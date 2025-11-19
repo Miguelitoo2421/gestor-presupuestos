@@ -11,7 +11,7 @@ echo.
 
 :: Agregar, commitear y pushear en una sola operación
 git add .
-git commit -m "Actualización automática - %date% %time%"
+git commit -m "Fase 1: Actualización de datos y texto (sin diseño)"
 git push
 
 if %errorlevel% equ 0 (
@@ -27,5 +27,4 @@ if %errorlevel% equ 0 (
     echo.
 )
 
-timeout /t 5
-
+pause

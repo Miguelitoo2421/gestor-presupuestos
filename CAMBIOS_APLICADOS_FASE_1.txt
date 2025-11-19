@@ -1,0 +1,81 @@
+═══════════════════════════════════════════════════════════════════
+  ✅ CAMBIOS APLICADOS - FASE 1 (Solo Datos y Texto)
+═══════════════════════════════════════════════════════════════════
+
+📝 RESUMEN DE CAMBIOS REALIZADOS:
+
+1️⃣ DATOS DE LA CLÍNICA ACTUALIZADOS:
+   ✅ BUKODENT
+   ✅ Tu Clínica Dental en Madrid
+   ✅ Calle López de Hoyos, 474. CP 28043
+   ✅ dental@dra-matheus-spinola.com
+   ✅ Teléfono: 631914884
+
+2️⃣ TÍTULOS CAMBIADOS:
+   ✅ "Presupuesto" → "Plan de Tratamiento"
+
+3️⃣ TOTALES RENOMBRADOS:
+   ✅ "Total del presupuesto sin descuento"
+   ✅ "Importe del descuento"
+   ✅ "Importe total con descuento"
+   ✅ Cálculos ajustados correctamente
+
+4️⃣ FOOTER ACTUALIZADO:
+   ✅ Eliminado nombre "Karelys M"
+   ✅ Agregado: "Prontopago 5% de descuento"
+   ✅ Agregado: "Presupuesto válido por 30 días a partir de la fecha de emisión"
+
+5️⃣ DATOS DEL PACIENTE EN PDF:
+   ✅ Comunidad + Código Postal en la misma línea que dirección
+
+6️⃣ TRATAMIENTOS ACTUALIZADOS:
+   ✅ Eliminados TODOS los tratamientos anteriores
+   ✅ Agregados 58 nuevos tratamientos organizados en:
+      - Invisalign (11 tratamientos)
+      - Ortodoncia / estética (9 tratamientos)
+      - Mensualidades / reposiciones (6 tratamientos)
+      - Brackets (4 tratamientos)
+      - Aparatología (10 tratamientos)
+      - Otros tratamientos (18 tratamientos)
+
+───────────────────────────────────────────────────────────────────
+⚠️ IMPORTANTE: EL DISEÑO VISUAL NO HA SIDO MODIFICADO
+───────────────────────────────────────────────────────────────────
+
+El diseño, posiciones, bordes y alineaciones permanecen EXACTAMENTE
+igual que antes. Solo se han cambiado los datos y textos.
+
+───────────────────────────────────────────────────────────────────
+🧪 PRÓXIMOS PASOS PARA PROBAR:
+───────────────────────────────────────────────────────────────────
+
+1. Doble clic en: INICIAR_APLICACION.bat
+2. Crea un presupuesto de prueba
+3. Agrega algunos tratamientos
+4. Descarga el PDF
+5. Verifica que los cambios sean correctos
+
+───────────────────────────────────────────────────────────────────
+🚀 PARA SUBIR A GITHUB:
+───────────────────────────────────────────────────────────────────
+
+Doble clic en: SUBIR_CAMBIOS_RAPIDO.bat
+
+Los cambios estarán online en 1-2 minutos en:
+https://miguelitoo2421.github.io/gestor-presupuestos/
+
+───────────────────────────────────────────────────────────────────
+⏸️ ESPERANDO CONFIRMACIÓN PARA FASE 2
+───────────────────────────────────────────────────────────────────
+
+Una vez que pruebes y verifiques que todo está correcto, dame el
+"OK" para proceder con la FASE 2 (cambios estéticos/visuales):
+
+✓ Mover datos de la doctora a la derecha
+✓ Ajustar espaciados
+✓ Eliminar bordes de la tabla
+✓ Agregar logo
+✓ etc.
+
+═══════════════════════════════════════════════════════════════════
+

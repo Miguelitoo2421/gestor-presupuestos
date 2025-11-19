@@ -32,13 +32,11 @@ export const CONFIG = {
             headerSubtitle2: 'Nº COLEGIADO 28017582',
             
             // Datos de la clínica (para cuerpo del PDF)
-            clinicName: 'Clínica Dental',
-            clinicBrand: 'Tliz Ortodoncia Invisible',
-            clinicCompany: 'Tliz Sonrisas S.L.',
-            clinicCIF: 'B-88246640',
-            clinicAddress: 'Calle de Cadarso, 3, CP: 28008, Madrid',
-            clinicEmail: 'hola@tliz.es',
-            clinicPhone: '649 22 53 69',
+            clinicName: 'BUKODENT',
+            clinicBrand: 'Tu Clínica Dental en Madrid',
+            clinicAddress: 'Calle López de Hoyos, 474. CP 28043',
+            clinicEmail: 'dental@dra-matheus-spinola.com',
+            clinicPhone: '631914884',
             
             // Información de exención de IVA
             ivaExemptionNote: 'FACTURA SUJETA A LA EXENCIÓN DEL IVA POR EL ARTÍCULO 20.5 DE LA LEY 37/1992',
@@ -46,7 +44,10 @@ export const CONFIG = {
             // Datos bancarios
             bankName: 'CaixaBank',
             bankIBAN: 'ES21 2100 3230 0213 0044 5835',
-            paymentNote: 'El pago mediante transferencia bancaria.'
+            
+            // Notas al pie
+            paymentNote: 'Prontopago 5% de descuento',
+            validityNote: 'Presupuesto válido por 30 días a partir de la fecha de emisión'
         },
         
         // Configuración de tamaño y márgenes

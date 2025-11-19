@@ -30,6 +30,16 @@ export class PDFService {
             const fontBold = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
             const fontRegular = await pdfDoc.embedFont(StandardFonts.Helvetica);
             
+            // Cargar logo
+            let logoImage = null;
+            try {
+                const logoResponse = await fetch('images/logo_1_sinF.png');
+                const logoArrayBuffer = await logoResponse.arrayBuffer();
+                logoImage = await pdfDoc.embedPng(logoArrayBuffer);
+            } catch (error) {
+                console.warn('No se pudo cargar el logo:', error);
+            }
+            
             // Crear página A4
             const page = pdfDoc.addPage([CONFIG.PDF.PAGE_SIZE.width, CONFIG.PDF.PAGE_SIZE.height]);
             const { width, height } = page.getSize();
@@ -38,14 +48,14 @@ export class PDFService {
             let yPosition = height - margins.top;
             
             // ===== 1. ENCABEZADO =====
-            yPosition = this._drawHeader(page, fontBold, fontRegular, yPosition, rgb);
+            yPosition = this._drawHeader(page, fontBold, fontRegular, yPosition, rgb, width, logoImage);
             
             // ===== 2. DATOS DE LA CLÍNICA + NÚMERO DE FACTURA =====
-            yPosition -= 20;
+            yPosition -= 40; // Más separación del encabezado (1cm aprox)
             yPosition = this._drawClinicAndInvoiceInfo(page, fontBold, fontRegular, budget, yPosition, rgb, width, margins);
             
             // ===== 3. DATOS DEL PACIENTE =====
-            yPosition -= 20;
+            yPosition -= 40; // Más separación (1cm aprox)
             yPosition = this._drawPatientInfo(page, fontBold, fontRegular, budget, yPosition, rgb, margins);
             
             // ===== 4. TABLA DE TRATAMIENTOS =====
@@ -73,60 +83,81 @@ export class PDFService {
      * Dibuja el encabezado del PDF
      * @private
      */
-    _drawHeader(page, fontBold, fontRegular, yPosition, rgb) {
+    _drawHeader(page, fontBold, fontRegular, yPosition, rgb, width, logoImage) {
         const clinic = CONFIG.PDF.CLINIC_INFO;
         const leftX = 40;
+        const rightX = 555 - 180; // Posición derecha para datos de la doctora
         
-        // Título principal
+        // Calcular la altura del encabezado negro
+        const headerTopY = yPosition;
+        const headerBottomY = yPosition - 50;
+        
+        // FONDO NEGRO para toda la franja del encabezado (de extremo a extremo)
+        page.drawRectangle({
+            x: 0,
+            y: headerBottomY,
+            width: width,
+            height: 50,
+            color: rgb(0, 0, 0),
+        });
+        
+        // Título principal (izquierda) - TEXTO BLANCO
         page.drawText('PLAN DE TRATAMIENTO', {
             x: leftX,
             y: yPosition,
             size: 16,
             font: fontBold,
-            color: rgb(0, 0, 0),
+            color: rgb(1, 1, 1), // Blanco
         });
         
-        yPosition -= 25;
-        
-        // Nombre de la doctora
+        // Datos de la doctora (derecha) - TEXTO BLANCO
         page.drawText(clinic.doctorFullName, {
-            x: leftX,
+            x: rightX,
             y: yPosition,
-            size: 12,
+            size: 11,
             font: fontBold,
-            color: rgb(0, 0, 0),
+            color: rgb(1, 1, 1), // Blanco
         });
         
         yPosition -= 15;
         
-        // Subtítulos
+        // Subtítulos de la doctora (derecha) - TEXTO BLANCO
         page.drawText(clinic.headerSubtitle1, {
-            x: leftX,
+            x: rightX,
             y: yPosition,
-            size: 10,
+            size: 9,
             font: fontRegular,
-            color: rgb(0, 0, 0),
+            color: rgb(1, 1, 1), // Blanco
         });
         
         yPosition -= 12;
         
         page.drawText(clinic.headerSubtitle2, {
-            x: leftX,
+            x: rightX,
             y: yPosition,
-            size: 10,
+            size: 9,
             font: fontRegular,
-            color: rgb(0, 0, 0),
+            color: rgb(1, 1, 1), // Blanco
         });
         
-        yPosition -= 10;
+        yPosition -= 15;
         
-        // Línea divisoria
-        page.drawLine({
-            start: { x: 40, y: yPosition },
-            end: { x: 555, y: yPosition },
-            thickness: 1,
-            color: rgb(0, 0, 0),
-        });
+        // Logo debajo del título (si está disponible)
+        if (logoImage) {
+            const logoWidth = 100; // Ancho del logo
+            const logoHeight = logoImage.height * (logoWidth / logoImage.width); // Mantener proporción
+            
+            page.drawImage(logoImage, {
+                x: leftX,
+                y: yPosition - logoHeight - 10,
+                width: logoWidth,
+                height: logoHeight,
+            });
+            
+            yPosition -= (logoHeight + 20); // Ajustar posición después del logo
+        }
+        
+        // NO HAY LÍNEA DIVISORIA
         
         return yPosition;
     }
@@ -236,13 +267,7 @@ export class PDFService {
         
         yPosition -= 10;
         
-        // Línea divisoria
-        page.drawLine({
-            start: { x: 40, y: yPosition },
-            end: { x: 555, y: yPosition },
-            thickness: 1,
-            color: rgb(0, 0, 0),
-        });
+        // NO HAY LÍNEA DIVISORIA
         
         return yPosition;
     }
@@ -252,7 +277,7 @@ export class PDFService {
      * @private
      */
     _drawPatientInfo(page, fontBold, fontRegular, budget, yPosition, rgb, margins) {
-        const leftX = margins.left;
+        const leftX = margins.left + 30; // Mover a la derecha
         const labelWidth = 120;
         
         // Título
@@ -304,7 +329,7 @@ export class PDFService {
         
         yPosition -= 12;
         
-        // Dirección
+        // Dirección (con comunidad y código postal en la misma línea)
         page.drawText('Dirección:', {
             x: leftX,
             y: yPosition,
@@ -313,45 +338,8 @@ export class PDFService {
             color: rgb(0, 0, 0),
         });
         
-        page.drawText(budget.patientAddress || '-', {
-            x: leftX + labelWidth,
-            y: yPosition,
-            size: 9,
-            font: fontRegular,
-            color: rgb(0, 0, 0),
-        });
-        
-        yPosition -= 12;
-        
-        // Comunidad
-        page.drawText('Comunidad:', {
-            x: leftX,
-            y: yPosition,
-            size: 9,
-            font: fontBold,
-            color: rgb(0, 0, 0),
-        });
-        
-        page.drawText(budget.patientRegion || '-', {
-            x: leftX + labelWidth,
-            y: yPosition,
-            size: 9,
-            font: fontRegular,
-            color: rgb(0, 0, 0),
-        });
-        
-        yPosition -= 12;
-        
-        // Código Postal
-        page.drawText('Código Postal:', {
-            x: leftX,
-            y: yPosition,
-            size: 9,
-            font: fontBold,
-            color: rgb(0, 0, 0),
-        });
-        
-        page.drawText(budget.patientPostalCode || '-', {
+        const direccionCompleta = `${budget.patientAddress || '-'}, ${budget.patientRegion || '-'}, CP: ${budget.patientPostalCode || '-'}`;
+        page.drawText(direccionCompleta, {
             x: leftX + labelWidth,
             y: yPosition,
             size: 9,
@@ -399,13 +387,7 @@ export class PDFService {
         
         yPosition -= 10;
         
-        // Línea divisoria
-        page.drawLine({
-            start: { x: 40, y: yPosition },
-            end: { x: 555, y: yPosition },
-            thickness: 1,
-            color: rgb(0, 0, 0),
-        });
+        // NO HAY LÍNEA DIVISORIA
         
         return yPosition;
     }
@@ -429,7 +411,7 @@ export class PDFService {
         };
         
         // Título de la tabla
-        page.drawText('PRESUPUESTO', {
+        page.drawText('PLAN DE TRATAMIENTO', {
             x: startX,
             y: yPosition,
             size: 11,
@@ -442,25 +424,6 @@ export class PDFService {
         // ===== ENCABEZADOS DE LA TABLA =====
         const headerY = yPosition;
         const headerHeight = 20;
-        
-        // Fondo gris para encabezados
-        page.drawRectangle({
-            x: startX,
-            y: headerY - headerHeight,
-            width: tableWidth,
-            height: headerHeight,
-            color: rgb(0.9, 0.9, 0.9),
-        });
-        
-        // Bordes del encabezado
-        page.drawRectangle({
-            x: startX,
-            y: headerY - headerHeight,
-            width: tableWidth,
-            height: headerHeight,
-            borderColor: rgb(0, 0, 0),
-            borderWidth: 1,
-        });
         
         // Textos del encabezado
         let currentX = startX + 5;
@@ -524,29 +487,6 @@ export class PDFService {
         const rowHeight = 18;
         
         budget.items.forEach((item, index) => {
-            const isEven = index % 2 === 0;
-            
-            // Fondo alternado
-            if (isEven) {
-                page.drawRectangle({
-                    x: startX,
-                    y: yPosition - rowHeight,
-                    width: tableWidth,
-                    height: rowHeight,
-                    color: rgb(0.95, 0.95, 0.95),
-                });
-            }
-            
-            // Bordes de la fila
-            page.drawRectangle({
-                x: startX,
-                y: yPosition - rowHeight,
-                width: tableWidth,
-                height: rowHeight,
-                borderColor: rgb(0, 0, 0),
-                borderWidth: 0.5,
-            });
-            
             currentX = startX + 5;
             const textY = yPosition - 12;
             
@@ -624,21 +564,30 @@ export class PDFService {
      */
     _drawTotals(page, fontBold, fontRegular, budget, yPosition, rgb, width, margins) {
         const summary = budget.getSummary();
-        const rightX = width - margins.right - 150;
+        const leftX = width - margins.right - 280; // Mover más a la izquierda
+        
+        // Calcular total sin descuento
+        let totalSinDescuento = 0;
+        budget.items.forEach(item => {
+            totalSinDescuento += item.getSubtotalWithoutDiscount();
+        });
+        
+        // Calcular importe del descuento
+        const importeDescuento = totalSinDescuento - summary.subtotal;
         
         yPosition -= 15;
         
-        // Subtotal
-        page.drawText('Subtotal:', {
-            x: rightX,
+        // Total del presupuesto sin descuento
+        page.drawText('Total del presupuesto sin descuento:', {
+            x: leftX,
             y: yPosition,
             size: 10,
             font: fontBold,
             color: rgb(0, 0, 0),
         });
         
-        page.drawText(summary.subtotalFormatted, {
-            x: rightX + 100,
+        page.drawText(formatCurrency(totalSinDescuento, budget.currencySymbol), {
+            x: leftX + 220,
             y: yPosition,
             size: 10,
             font: fontRegular,
@@ -647,20 +596,17 @@ export class PDFService {
         
         yPosition -= 15;
         
-        // IRPF (7%)
-        const irpf = summary.subtotal * 0.07;
-        const irpfFormatted = formatCurrency(irpf, budget.currencySymbol);
-        
-        page.drawText('IRPF (7%):', {
-            x: rightX,
+        // Importe del descuento
+        page.drawText('Importe del descuento:', {
+            x: leftX,
             y: yPosition,
             size: 10,
             font: fontBold,
             color: rgb(0, 0, 0),
         });
         
-        page.drawText(irpfFormatted, {
-            x: rightX + 100,
+        page.drawText(formatCurrency(importeDescuento, budget.currencySymbol), {
+            x: leftX + 220,
             y: yPosition,
             size: 10,
             font: fontRegular,
@@ -669,33 +615,30 @@ export class PDFService {
         
         yPosition -= 20;
         
-        // TOTAL
-        const totalConIRPF = summary.subtotal - irpf;
-        const totalFormatted = formatCurrency(totalConIRPF, budget.currencySymbol);
-        
-        // Fondo gris para el total
+        // Importe total con descuento - FRANJA NEGRA DE EXTREMO A EXTREMO
+        // Fondo negro para toda la franja
         page.drawRectangle({
-            x: rightX - 10,
+            x: 0,
             y: yPosition - 15,
-            width: 200,
+            width: width,
             height: 25,
-            color: rgb(0.85, 0.85, 0.85),
+            color: rgb(0, 0, 0), // Negro
         });
         
-        page.drawText('TOTAL:', {
-            x: rightX,
+        page.drawText('Importe total con descuento:', {
+            x: leftX,
             y: yPosition,
             size: 12,
             font: fontBold,
-            color: rgb(0, 0, 0),
+            color: rgb(1, 1, 1), // Blanco
         });
         
-        page.drawText(totalFormatted, {
-            x: rightX + 100,
+        page.drawText(summary.subtotalFormatted, {
+            x: leftX + 220,
             y: yPosition,
             size: 12,
             font: fontBold,
-            color: rgb(0, 0, 0),
+            color: rgb(1, 1, 1), // Blanco
         });
         
         return yPosition - 20;
@@ -710,13 +653,7 @@ export class PDFService {
         const leftX = margins.left;
         let footerY = 120;
         
-        // Línea divisoria superior
-        page.drawLine({
-            start: { x: 40, y: footerY + 20 },
-            end: { x: 555, y: footerY + 20 },
-            thickness: 1,
-            color: rgb(0, 0, 0),
-        });
+        // NO HAY LÍNEA DIVISORIA
         
         // Nota de exención de IVA
         page.drawText(clinic.ivaExemptionNote, {
@@ -729,8 +666,8 @@ export class PDFService {
         
         footerY -= 15;
         
-        // Nombre de la doctora
-        page.drawText(clinic.doctorName, {
+        // Nota de prontopago
+        page.drawText(clinic.paymentNote, {
             x: leftX,
             y: footerY,
             size: 9,
@@ -740,8 +677,8 @@ export class PDFService {
         
         footerY -= 15;
         
-        // Nota de pago
-        page.drawText(clinic.paymentNote, {
+        // Validez del presupuesto
+        page.drawText(clinic.validityNote, {
             x: leftX,
             y: footerY,
             size: 9,
@@ -749,7 +686,7 @@ export class PDFService {
             color: rgb(0, 0, 0),
         });
         
-        footerY -= 12;
+        footerY -= 15;
         
         // Banco
         page.drawText(`Banco: ${clinic.bankName}`, {

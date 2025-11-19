@@ -1,99 +1,328 @@
 {
-  "tratamientos": [
-    {
-      "id": "limpieza-basica",
-      "nombre": "Limpieza Dental Básica",
-      "categoria": "Preventiva",
-      "precio": 45.00,
-      "descripcion": "Limpieza profesional con eliminación de sarro y pulido"
-    },
-    {
-      "id": "limpieza-profunda",
-      "nombre": "Limpieza Dental Profunda",
-      "categoria": "Preventiva",
-      "precio": 85.00,
-      "descripcion": "Limpieza profunda con curetaje y pulido profesional"
-    },
-    {
-      "id": "empaste-composite",
-      "nombre": "Empaste de Composite",
-      "categoria": "Restauradora",
-      "precio": 65.00,
-      "descripcion": "Restauración con composite estético"
-    },
-    {
-      "id": "endodoncia-molar",
-      "nombre": "Endodoncia Molar",
-      "categoria": "Endodoncia",
-      "precio": 280.00,
-      "descripcion": "Tratamiento de conductos en molar"
-    },
-    {
-      "id": "endodoncia-premolar",
-      "nombre": "Endodoncia Premolar",
-      "categoria": "Endodoncia",
-      "precio": 220.00,
-      "descripcion": "Tratamiento de conductos en premolar"
-    },
-    {
-      "id": "corona-porcelana",
-      "nombre": "Corona de Porcelana",
-      "categoria": "Prótesis",
-      "precio": 380.00,
-      "descripcion": "Corona completa de porcelana"
-    },
-    {
-      "id": "extraccion-simple",
-      "nombre": "Extracción Simple",
-      "categoria": "Cirugía",
-      "precio": 55.00,
-      "descripcion": "Extracción dental simple"
-    },
-    {
-      "id": "extraccion-compleja",
-      "nombre": "Extracción Compleja",
-      "categoria": "Cirugía",
-      "precio": 120.00,
-      "descripcion": "Extracción dental quirúrgica"
-    },
-    {
-      "id": "blanqueamiento-dental",
-      "nombre": "Blanqueamiento Dental",
-      "categoria": "Estética",
-      "precio": 250.00,
-      "descripcion": "Blanqueamiento profesional en clínica"
-    },
-    {
-      "id": "ortodoncia-brackets",
-      "nombre": "Ortodoncia con Brackets (mensual)",
-      "categoria": "Ortodoncia",
-      "precio": 150.00,
-      "descripcion": "Cuota mensual de tratamiento de ortodoncia"
-    },
-    {
-      "id": "ortodoncia-invisalign",
-      "nombre": "Ortodoncia Invisalign (mensual)",
-      "categoria": "Ortodoncia",
-      "precio": 280.00,
-      "descripcion": "Cuota mensual de ortodoncia invisible"
-    },
-    {
-      "id": "implante-dental",
-      "nombre": "Implante Dental",
-      "categoria": "Implantología",
-      "precio": 850.00,
-      "descripcion": "Implante dental completo con corona"
-    }
-  ],
-  "configuracion": {
-    "iva": 21,
-    "moneda": "EUR",
-    "simbolo_moneda": "€"
-  }
+    "tratamientos": [
+        {
+            "id": "invisalign-express",
+            "nombre": "Invisalign Express",
+            "categoria": "Invisalign",
+            "precio": 1436.40
+        },
+        {
+            "id": "invisalign-lite",
+            "nombre": "Invisalign Lite",
+            "categoria": "Invisalign",
+            "precio": 2879.80
+        },
+        {
+            "id": "invisalign-moderate",
+            "nombre": "Invisalign Moderate",
+            "categoria": "Invisalign",
+            "precio": 3222.80
+        },
+        {
+            "id": "invisalign-comprehensive-3",
+            "nombre": "Invisalign Comprehensive 3",
+            "categoria": "Invisalign",
+            "precio": 4177.60
+        },
+        {
+            "id": "invisalign-comprehensive-5",
+            "nombre": "Invisalign Comprehensive 5",
+            "categoria": "Invisalign",
+            "precio": 5019.00
+        },
+        {
+            "id": "invisalign-first-comprehensive",
+            "nombre": "Invisalign First Comprehensive",
+            "categoria": "Invisalign",
+            "precio": 2529.80
+        },
+        {
+            "id": "invisalign-comprehensive-phase-2",
+            "nombre": "Invisalign Comprehensive Phase 2",
+            "categoria": "Invisalign",
+            "precio": 3434.20
+        },
+        {
+            "id": "invisalign-palatal-expander",
+            "nombre": "Invisalign Palatal Expander",
+            "categoria": "Invisalign",
+            "precio": 1474.20
+        },
+        {
+            "id": "vivera-3-juegos",
+            "nombre": "VIVERA 3 JUEGOS",
+            "categoria": "Invisalign",
+            "precio": 418.60
+        },
+        {
+            "id": "retencion-fija",
+            "nombre": "Retención Fija (1 arcada)",
+            "categoria": "Invisalign",
+            "precio": 99.00
+        },
+        {
+            "id": "retencion-removible",
+            "nombre": "Retención Removible (ambas arcadas)",
+            "categoria": "Invisalign",
+            "precio": 179.00
+        },
+        {
+            "id": "blanqueamiento-domiciliario",
+            "nombre": "Blanqueamiento domiciliario",
+            "categoria": "Ortodoncia / estética",
+            "precio": 225.00
+        },
+        {
+            "id": "blanqueamiento-clinica",
+            "nombre": "Blanqueamiento Clínica",
+            "categoria": "Ortodoncia / estética",
+            "precio": 300.00
+        },
+        {
+            "id": "mantenedor-espacio",
+            "nombre": "Mantenedor de espacio",
+            "categoria": "Ortodoncia / estética",
+            "precio": 110.00
+        },
+        {
+            "id": "selladores",
+            "nombre": "Selladores",
+            "categoria": "Ortodoncia / estética",
+            "precio": 20.00
+        },
+        {
+            "id": "exodoncia-temporales",
+            "nombre": "Exodoncia (temporales)",
+            "categoria": "Ortodoncia / estética",
+            "precio": 50.00
+        },
+        {
+            "id": "estudio-invisalign",
+            "nombre": "Estudio Invisalign",
+            "categoria": "Ortodoncia / estética",
+            "precio": 300.00
+        },
+        {
+            "id": "estudio-ortodoncia-bx",
+            "nombre": "Estudio Ortodoncia BX",
+            "categoria": "Ortodoncia / estética",
+            "precio": 150.00
+        },
+        {
+            "id": "cementado-bx-esteticos",
+            "nombre": "Cementado BX estéticos (arcada)",
+            "categoria": "Ortodoncia / estética",
+            "precio": 330.00
+        },
+        {
+            "id": "cementado-bx-metalicos",
+            "nombre": "Cementado BX metálicos (arcada)",
+            "categoria": "Ortodoncia / estética",
+            "precio": 250.00
+        },
+        {
+            "id": "mensualidad-invisalign-100",
+            "nombre": "Mensualidad Invisaling 100",
+            "categoria": "Mensualidades / reposiciones",
+            "precio": 100.00
+        },
+        {
+            "id": "mensualidad-invisalign-150",
+            "nombre": "Mensualidad Invisaling 150",
+            "categoria": "Mensualidades / reposiciones",
+            "precio": 150.00
+        },
+        {
+            "id": "mensualidad-bx-80",
+            "nombre": "Mensualidad/ Bx 80",
+            "categoria": "Mensualidades / reposiciones",
+            "precio": 80.00
+        },
+        {
+            "id": "mensualidad-bx-100",
+            "nombre": "Mensualidad/ Bx 100",
+            "categoria": "Mensualidades / reposiciones",
+            "precio": 100.00
+        },
+        {
+            "id": "reposicion-bx-metalicos",
+            "nombre": "Reposición BX metálicos",
+            "categoria": "Mensualidades / reposiciones",
+            "precio": 15.00
+        },
+        {
+            "id": "reposicion-bx-porcelana",
+            "nombre": "Reposición BX porcelana",
+            "categoria": "Mensualidades / reposiciones",
+            "precio": 25.00
+        },
+        {
+            "id": "brackets-metalicos",
+            "nombre": "Brackets Metálicos",
+            "categoria": "Brackets",
+            "precio": 2950.00
+        },
+        {
+            "id": "brackets-metalicos-autolig",
+            "nombre": "Brackets Metálicos autolig",
+            "categoria": "Brackets",
+            "precio": 3800.00
+        },
+        {
+            "id": "brackets-zafiro",
+            "nombre": "Brackets Zafiro",
+            "categoria": "Brackets",
+            "precio": 3950.00
+        },
+        {
+            "id": "brackets-porcelana",
+            "nombre": "Brackets Porcelana",
+            "categoria": "Brackets",
+            "precio": 3550.00
+        },
+        {
+            "id": "tratamiento-ortopedico",
+            "nombre": "Tratamiento Ortopédico",
+            "categoria": "Aparatología",
+            "precio": 1750.00
+        },
+        {
+            "id": "mensualidades-rev-removible",
+            "nombre": "Mensualidades / rev Removible",
+            "categoria": "Aparatología",
+            "precio": 65.00
+        },
+        {
+            "id": "barra-lingual",
+            "nombre": "Barra Lingual",
+            "categoria": "Aparatología",
+            "precio": 110.00
+        },
+        {
+            "id": "barra-transpalatina",
+            "nombre": "Barra Transpalatina",
+            "categoria": "Aparatología",
+            "precio": 110.00
+        },
+        {
+            "id": "placa-hawley",
+            "nombre": "Placa Hawley",
+            "categoria": "Aparatología",
+            "precio": 120.00
+        },
+        {
+            "id": "placa-hawley-expansion",
+            "nombre": "Placa Hawley - T. expansión",
+            "categoria": "Aparatología",
+            "precio": 135.00
+        },
+        {
+            "id": "disyuntores-hyrax",
+            "nombre": "Disyuntores Hyrax",
+            "categoria": "Aparatología",
+            "precio": 300.00
+        },
+        {
+            "id": "mentonera",
+            "nombre": "Mentonera",
+            "categoria": "Aparatología",
+            "precio": 230.00
+        },
+        {
+            "id": "forsus-twin-block-dam",
+            "nombre": "Forsus, Twin Block, DAM, etc",
+            "categoria": "Aparatología",
+            "precio": 300.00
+        },
+        {
+            "id": "diseno-sonrisa",
+            "nombre": "Diseño de Sonrisa (3 a 3)",
+            "categoria": "Aparatología",
+            "precio": 295.00
+        },
+        {
+            "id": "consulta-urgencia",
+            "nombre": "Consulta de urgencia",
+            "categoria": "Otros tratamientos",
+            "precio": 60.00
+        },
+        {
+            "id": "consulta-profesional",
+            "nombre": "Consulta profesional",
+            "categoria": "Otros tratamientos",
+            "precio": 50.00
+        },
+        {
+            "id": "control-pb",
+            "nombre": "Téc. de control de P.B",
+            "categoria": "Otros tratamientos",
+            "precio": 25.00
+        },
+        {
+            "id": "radiografia-intraoral",
+            "nombre": "Radiografía intraoral",
+            "categoria": "Otros tratamientos",
+            "precio": 35.00
+        },
+        {
+            "id": "radiografia-oclusal",
+            "nombre": "Radiografía oclusal",
+            "categoria": "Otros tratamientos",
+            "precio": 35.00
+        },
+        {
+            "id": "radiografia-aleta",
+            "nombre": "Radiografía de aleta",
+            "categoria": "Otros tratamientos",
+            "precio": 35.00
+        },
+        {
+            "id": "cefalica-lateral",
+            "nombre": "Cefálica Lateral",
+            "categoria": "Otros tratamientos",
+            "precio": 45.00
+        },
+        {
+            "id": "ortopantomografia",
+            "nombre": "Ortopantomografía digital",
+            "categoria": "Otros tratamientos",
+            "precio": 45.00
+        },
+        {
+            "id": "limpieza-dental",
+            "nombre": "Limpieza Dental",
+            "categoria": "Otros tratamientos",
+            "precio": 50.00
+        },
+        {
+            "id": "fluorizacion",
+            "nombre": "Fluorización",
+            "categoria": "Otros tratamientos",
+            "precio": 20.00
+        },
+        {
+            "id": "obturaciones-simples",
+            "nombre": "Obturaciones Simples",
+            "categoria": "Otros tratamientos",
+            "precio": 50.00
+        },
+        {
+            "id": "obturaciones-complejas",
+            "nombre": "Obturaciones Complejas",
+            "categoria": "Otros tratamientos",
+            "precio": 70.00
+        },
+        {
+            "id": "reconstrucciones",
+            "nombre": "Reconstrucciones",
+            "categoria": "Otros tratamientos",
+            "precio": 85.00
+        },
+        {
+            "id": "ferula-descarga",
+            "nombre": "Férula de Descarga Michigan",
+            "categoria": "Otros tratamientos",
+            "precio": 285.00
+        }
+    ]
 }
-
-
-
-
-
-
