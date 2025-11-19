@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía: Subir a GitHub Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .step {
+            background: #f8f9fa;
+            border-left: 5px solid #667eea;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        
+        .step h2 {
+            display: inline-block;
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .step p {
+            color: #666;
+            margin-left: 55px;
+            font-size: 1.1rem;
+        }
+        
+        .step ul {
+            margin-left: 75px;
+            margin-top: 10px;
+        }
+        
+        .step li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            color: #856404;
+        }
+        
+        .url-box {
+            background: #e7f3ff;
+            border: 2px solid #2196F3;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            text-align: center;
+            color: #0d47a1;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 5px solid #28a745;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .success h3 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+        
+        .success ul {
+            margin-left: 20px;
+        }
+        
+        .success li {
+            color: #155724;
+            margin-bottom: 5px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .warning h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Guía Paso a Paso</h1>
+            <p>Cómo Subir tu Aplicación a GitHub Pages</p>
+        </header>
+        
+        <div class="content">
+            <div class="step">
+                <span class="step-number">1</span>
+                <h2>Crear Cuenta en GitHub</h2>
+                <p>Ve a <span class="highlight">github.com</span> y crea una cuenta gratis</p>
+                <ul>
+                    <li>Haz clic en "Sign Up" (Registrarse)</li>
+                    <li>Usa tu email personal o profesional</li>
+                    <li>Elige un nombre de usuario (ejemplo: <span class="highlight">karmatheus</span>)</li>
+                    <li>Verifica tu email</li>
+                </ul>
+                <a href="https://github.com" class="btn" target="_blank">Ir a GitHub →</a>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">2</span>
+                <h2>Crear Nuevo Repositorio</h2>
+                <p>Un repositorio es como una carpeta para tu proyecto</p>
+                <ul>
+                    <li>Haz clic en el botón <span class="highlight">+</span> arriba a la derecha</li>
+                    <li>Selecciona <span class="highlight">"New repository"</span></li>
+                    <li>Nombre del repositorio: <span class="highlight">gestor-presupuestos</span></li>
+                    <li>Marca como <span class="highlight">Public</span> (público)</li>
+                    <li>Haz clic en <span class="highlight">"Create repository"</span></li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">3</span>
+                <h2>Subir los Archivos</h2>
+                <p>Sube toda la carpeta del proyecto</p>
+                <ul>
+                    <li>En la página del repositorio, busca <span class="highlight">"uploading an existing file"</span></li>
+                    <li>Arrastra TODOS los archivos de tu proyecto a la ventana</li>
+                    <li>Espera a que se suban (puede tardar 1-2 minutos)</li>
+                    <li>Haz clic en <span class="highlight">"Commit changes"</span> (botón verde)</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">4</span>
+                <h2>Activar GitHub Pages</h2>
+                <p>Esto hará que tu aplicación esté disponible en internet</p>
+                <ul>
+                    <li>Haz clic en <span class="highlight">"Settings"</span> (Configuración)</li>
+                    <li>En el menú lateral izquierdo, busca <span class="highlight">"Pages"</span></li>
+                    <li>En "Source", selecciona <span class="highlight">"main"</span></li>
+                    <li>Haz clic en <span class="highlight">"Save"</span></li>
+                    <li>Espera 2-3 minutos a que se active</li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <span class="step-number">5</span>
+                <h2>¡Listo! Obtén tu URL</h2>
+                <p>Tu aplicación ahora está disponible en internet</p>
+                
+                <div class="url-box">
+                    https://<strong>TU_USUARIO</strong>.github.io/<strong>gestor-presupuestos</strong>/
+                </div>
+                
+                <p style="margin-top: 15px;">
+                    <strong>Ejemplo:</strong> Si tu usuario es "karmatheus", tu URL será:
+                </p>
+                <div class="url-box">
+                    https://karmatheus.github.io/gestor-presupuestos/
+                </div>
+            </div>
+            
+            <div class="success">
+                <h3>✅ Ventajas de Usar GitHub Pages</h3>
+                <ul>
+                    <li>✓ Completamente GRATIS</li>
+                    <li>✓ Tu esposa puede acceder con solo el enlace</li>
+                    <li>✓ Funciona desde cualquier dispositivo (PC, tablet, móvil)</li>
+                    <li>✓ No necesita instalar nada</li>
+                    <li>✓ HTTPS seguro incluido</li>
+                    <li>✓ Disponible 24/7</li>
+                    <li>✓ Fácil de actualizar</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <h3>⚠️ Importante</h3>
+                <ul>
+                    <li>El repositorio debe ser <strong>Public</strong> para que GitHub Pages funcione gratis</li>
+                    <li>Espera 2-3 minutos después de activar GitHub Pages antes de probar la URL</li>
+                    <li>Si cambias algo en el código, vuelve a subir los archivos y se actualizará automáticamente</li>
+                </ul>
+            </div>
+            
+            <div class="step" style="margin-top: 30px;">
+                <span class="step-number">💡</span>
+                <h2>Compartir con tu Esposa</h2>
+                <p>Una vez subido, simplemente envíale la URL por WhatsApp, email o como prefieras. Ella solo tiene que hacer clic y ¡ya puede usar la aplicación!</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>Gestor de Presupuestos Odontológicos</strong></p>
+            <p>Dra. Karelys Matheus Marielys Spinola</p>
+        </footer>
+    </div>
+</body>
+</html>
+

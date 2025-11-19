@@ -1,0 +1,279 @@
+/**
+ * preview.css
+ * Estilos para el componente de vista previa del PDF
+ */
+
+/* ===== CONTENEDOR DE VISTA PREVIA ===== */
+.preview-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 280px);
+    min-height: 600px;
+    background-color: var(--color-gray-100);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+}
+
+#pdf-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== IFRAME DEL PDF ===== */
+.pdf-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: white;
+}
+
+/* ===== PLACEHOLDER ===== */
+.preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    text-align: center;
+    color: var(--color-text-light);
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.5;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.placeholder-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-sm);
+}
+
+.placeholder-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    max-width: 400px;
+    line-height: 1.6;
+}
+
+.placeholder-hint {
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-md);
+    font-style: italic;
+}
+
+/* ===== ESTADO DE CARGA ===== */
+.preview-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-2xl);
+}
+
+.preview-loading p {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+    font-weight: 500;
+}
+
+/* ===== ESTADO DE ERROR ===== */
+.preview-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl);
+    text-align: center;
+}
+
+.error-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.error-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-danger);
+    margin-bottom: var(--spacing-sm);
+}
+
+.error-text {
+    font-size: 0.9375rem;
+    color: var(--color-text-light);
+}
+
+/* ===== CONTROLES DE VISTA PREVIA (para futuras mejoras) ===== */
+.preview-controls {
+    position: absolute;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    display: flex;
+    gap: var(--spacing-sm);
+    z-index: 10;
+}
+
+.preview-control-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.preview-control-btn:hover {
+    background-color: var(--color-gray-50);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+}
+
+.preview-control-btn:active {
+    transform: translateY(0);
+}
+
+/* ===== ZOOM CONTROLS (para futuras mejoras) ===== */
+.zoom-controls {
+    position: absolute;
+    bottom: var(--spacing-md);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: var(--spacing-xs);
+    background-color: white;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    z-index: 10;
+}
+
+.zoom-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    font-size: 1.125rem;
+}
+
+.zoom-btn:hover {
+    background-color: var(--color-gray-100);
+}
+
+.zoom-level {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--spacing-sm);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .preview-container {
+        height: 600px;
+        min-height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .preview-container {
+        height: 500px;
+        min-height: 400px;
+    }
+
+    .placeholder-icon {
+        font-size: 3rem;
+    }
+
+    .placeholder-title {
+        font-size: 1.125rem;
+    }
+
+    .placeholder-text {
+        font-size: 0.875rem;
+    }
+}
+
+/* ===== ANIMACIONES DE ENTRADA ===== */
+.pdf-iframe {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ===== OVERLAY DE CARGA (opcional) ===== */
+.preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+
+
+

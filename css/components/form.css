@@ -1,0 +1,163 @@
+/**
+ * form.css
+ * Estilos específicos para componentes de formulario
+ */
+
+/* ===== INPUTS Y SELECTS MEJORADOS ===== */
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group select {
+    font-family: inherit;
+    appearance: none;
+}
+
+/* Estilos para input de fecha */
+.form-group input[type="date"] {
+    position: relative;
+    padding-right: var(--spacing-xl);
+}
+
+.form-group input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    right: var(--spacing-sm);
+    cursor: pointer;
+}
+
+/* Estilos para input de número */
+.form-group input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Estilos para select */
+.form-group select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23343a40' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--spacing-md) center;
+    padding-right: var(--spacing-2xl);
+    cursor: pointer;
+}
+
+.form-group select option {
+    padding: var(--spacing-sm);
+}
+
+.form-group select optgroup {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* Estados de validación */
+.form-group input.error,
+.form-group select.error {
+    border-color: var(--color-danger);
+}
+
+.form-group input.error:focus,
+.form-group select.error:focus {
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+.form-group input.success,
+.form-group select.success {
+    border-color: var(--color-success);
+}
+
+.form-group input.success:focus,
+.form-group select.success:focus {
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+}
+
+/* Mensaje de ayuda/error */
+.form-help {
+    font-size: 0.8125rem;
+    color: var(--color-text-light);
+    margin-top: var(--spacing-xs);
+}
+
+.form-error {
+    font-size: 0.8125rem;
+    color: var(--color-danger);
+    margin-top: var(--spacing-xs);
+}
+
+/* ===== MEJORAS EN ACCESIBILIDAD ===== */
+.form-group input:disabled,
+.form-group select:disabled {
+    background-color: var(--color-gray-100);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.form-group label.required::after {
+    content: ' *';
+    color: var(--color-danger);
+}
+
+/* ===== ESTILOS PARA GRUPOS INLINE ===== */
+.form-group-inline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .form-group-inline {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== ANIMACIONES DE FORMULARIO ===== */
+.form-group input,
+.form-group select {
+    position: relative;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    animation: inputFocus 0.3s ease;
+}
+
+@keyframes inputFocus {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ===== CHECKBOX Y RADIO (por si se necesitan en el futuro) ===== */
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.form-check input[type="checkbox"],
+.form-check input[type="radio"] {
+    width: auto;
+    cursor: pointer;
+}
+
+.form-check label {
+    cursor: pointer;
+    margin-bottom: 0;
+    font-weight: 400;
+}
+
+
+
+
+
+

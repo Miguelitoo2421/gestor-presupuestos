@@ -1,0 +1,99 @@
+{
+  "tratamientos": [
+    {
+      "id": "limpieza-basica",
+      "nombre": "Limpieza Dental Básica",
+      "categoria": "Preventiva",
+      "precio": 45.00,
+      "descripcion": "Limpieza profesional con eliminación de sarro y pulido"
+    },
+    {
+      "id": "limpieza-profunda",
+      "nombre": "Limpieza Dental Profunda",
+      "categoria": "Preventiva",
+      "precio": 85.00,
+      "descripcion": "Limpieza profunda con curetaje y pulido profesional"
+    },
+    {
+      "id": "empaste-composite",
+      "nombre": "Empaste de Composite",
+      "categoria": "Restauradora",
+      "precio": 65.00,
+      "descripcion": "Restauración con composite estético"
+    },
+    {
+      "id": "endodoncia-molar",
+      "nombre": "Endodoncia Molar",
+      "categoria": "Endodoncia",
+      "precio": 280.00,
+      "descripcion": "Tratamiento de conductos en molar"
+    },
+    {
+      "id": "endodoncia-premolar",
+      "nombre": "Endodoncia Premolar",
+      "categoria": "Endodoncia",
+      "precio": 220.00,
+      "descripcion": "Tratamiento de conductos en premolar"
+    },
+    {
+      "id": "corona-porcelana",
+      "nombre": "Corona de Porcelana",
+      "categoria": "Prótesis",
+      "precio": 380.00,
+      "descripcion": "Corona completa de porcelana"
+    },
+    {
+      "id": "extraccion-simple",
+      "nombre": "Extracción Simple",
+      "categoria": "Cirugía",
+      "precio": 55.00,
+      "descripcion": "Extracción dental simple"
+    },
+    {
+      "id": "extraccion-compleja",
+      "nombre": "Extracción Compleja",
+      "categoria": "Cirugía",
+      "precio": 120.00,
+      "descripcion": "Extracción dental quirúrgica"
+    },
+    {
+      "id": "blanqueamiento-dental",
+      "nombre": "Blanqueamiento Dental",
+      "categoria": "Estética",
+      "precio": 250.00,
+      "descripcion": "Blanqueamiento profesional en clínica"
+    },
+    {
+      "id": "ortodoncia-brackets",
+      "nombre": "Ortodoncia con Brackets (mensual)",
+      "categoria": "Ortodoncia",
+      "precio": 150.00,
+      "descripcion": "Cuota mensual de tratamiento de ortodoncia"
+    },
+    {
+      "id": "ortodoncia-invisalign",
+      "nombre": "Ortodoncia Invisalign (mensual)",
+      "categoria": "Ortodoncia",
+      "precio": 280.00,
+      "descripcion": "Cuota mensual de ortodoncia invisible"
+    },
+    {
+      "id": "implante-dental",
+      "nombre": "Implante Dental",
+      "categoria": "Implantología",
+      "precio": 850.00,
+      "descripcion": "Implante dental completo con corona"
+    }
+  ],
+  "configuracion": {
+    "iva": 21,
+    "moneda": "EUR",
+    "simbolo_moneda": "€"
+  }
+}
+
+
+
+
+
+

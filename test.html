@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test PDF-LIB</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background: #2c5aa0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #1e3f70;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de PDF-LIB</h1>
+    <p>Esta es una página de prueba para verificar que PDF-LIB funciona correctamente.</p>
+    
+    <button onclick="testPDF()">Generar PDF de Prueba</button>
+    
+    <div id="status"></div>
+
+    <script src="libs/pdf-lib.min.js"></script>
+    <script>
+        async function testPDF() {
+            const statusDiv = document.getElementById('status');
+            
+            try {
+                statusDiv.innerHTML = '⏳ Generando PDF...';
+                statusDiv.className = '';
+                
+                // Verificar que PDF-LIB esté cargado
+                if (!window.PDFLib) {
+                    throw new Error('PDF-LIB no está cargado');
+                }
+                
+                const { PDFDocument, rgb, StandardFonts } = window.PDFLib;
+                
+                // Crear documento
+                const pdfDoc = await PDFDocument.create();
+                const page = pdfDoc.addPage([595.28, 841.89]); // A4
+                
+                // Cargar fuente
+                const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
+                
+                // Dibujar texto
+                page.drawText('¡PDF-LIB Funciona Correctamente! ✅', {
+                    x: 50,
+                    y: 750,
+                    size: 20,
+                    font: font,
+                    color: rgb(0.2, 0.4, 0.6),
+                });
+                
+                page.drawText('Este es un PDF de prueba generado correctamente.', {
+                    x: 50,
+                    y: 700,
+                    size: 12,
+                    font: font,
+                    color: rgb(0, 0, 0),
+                });
+                
+                // Guardar PDF
+                const pdfBytes = await pdfDoc.save();
+                
+                // Descargar
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'test-pdf.pdf';
+                link.click();
+                
+                statusDiv.innerHTML = '✅ <strong>¡Éxito!</strong> PDF generado y descargado correctamente.';
+                statusDiv.className = 'success';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                statusDiv.innerHTML = `❌ <strong>Error:</strong> ${error.message}`;
+                statusDiv.className = 'error';
+            }
+        }
+        
+        // Test automático al cargar
+        window.addEventListener('load', () => {
+            if (window.PDFLib) {
+                console.log('✅ PDF-LIB cargado correctamente');
+            } else {
+                console.error('❌ PDF-LIB NO está cargado');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+

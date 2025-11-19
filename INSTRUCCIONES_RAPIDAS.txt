@@ -1,0 +1,103 @@
+═══════════════════════════════════════════════════════════════════
+  📋 INSTRUCCIONES RÁPIDAS - GESTOR DE PRESUPUESTOS
+═══════════════════════════════════════════════════════════════════
+
+🎯 OPCIÓN 1: USO LOCAL (Para usar en tu ordenador)
+───────────────────────────────────────────────────────────────────
+
+1. Haz doble clic en: INICIAR_APLICACION.bat
+2. Se abrirá el navegador automáticamente
+3. ¡Ya está listo para usar!
+
+NOTA: NO cierres la ventana negra mientras uses la aplicación.
+
+
+🌐 OPCIÓN 2: SUBIR A INTERNET (Para que tu esposa use sin instalar nada)
+───────────────────────────────────────────────────────────────────
+
+PASOS SIMPLES:
+
+1. Crea una cuenta GRATIS en: https://github.com
+   - Haz clic en "Sign Up"
+   - Usa tu email
+   - Elige un nombre de usuario (ejemplo: karmatheus)
+
+2. Crea un Nuevo Repositorio
+   - Haz clic en el botón "+" arriba a la derecha
+   - Clic en "New repository"
+   - Ponle un nombre: gestor-presupuestos
+   - Marca como "Public"
+   - Clic en "Create repository"
+
+3. Sube los Archivos
+   - Verás un mensaje "Get started by creating a new file or uploading an existing file"
+   - Haz clic en "uploading an existing file"
+   - Arrastra TODA la carpeta del proyecto a la ventana
+   - Clic en "Commit changes" (botón verde abajo)
+   - Espera 1 minuto a que se suban todos los archivos
+
+4. Activa GitHub Pages
+   - Haz clic en "Settings" (arriba en el menú)
+   - En el menú lateral izquierdo, busca "Pages"
+   - En "Source", selecciona "main"
+   - Clic en "Save"
+   - Espera 2 minutos
+
+5. ¡LISTO! Tu aplicación estará en:
+   https://TU_USUARIO.github.io/gestor-presupuestos/
+
+   Ejemplo: https://karmatheus.github.io/gestor-presupuestos/
+
+
+✅ VENTAJAS DE LA OPCIÓN 2:
+───────────────────────────────────────────────────────────────────
+
+✓ Tu esposa solo necesita el enlace
+✓ Funciona desde cualquier ordenador, tablet o móvil
+✓ No necesita instalar nada
+✓ Es GRATIS para siempre
+✓ Es SEGURO (HTTPS automático)
+✓ Puedes actualizarlo cuando quieras
+
+
+📞 CÓMO COMPARTIR CON TU ESPOSA:
+───────────────────────────────────────────────────────────────────
+
+1. Una vez subido a GitHub Pages, solo envíale el enlace:
+   https://TU_USUARIO.github.io/gestor-presupuestos/
+
+2. Ella lo abre en su navegador y ¡listo!
+
+3. Puede guardar el enlace en "Favoritos" para acceso rápido
+
+
+🔄 CÓMO ACTUALIZAR LA APLICACIÓN (Si haces cambios):
+───────────────────────────────────────────────────────────────────
+
+1. Ve a tu repositorio en GitHub
+2. Haz clic en "Add file" → "Upload files"
+3. Arrastra los archivos nuevos/modificados
+4. Clic en "Commit changes"
+5. ¡Automáticamente se actualizará en 1-2 minutos!
+
+
+❓ ¿PROBLEMAS?
+───────────────────────────────────────────────────────────────────
+
+Problema: "No tengo Python instalado"
+Solución: Descarga de https://www.python.org/downloads/ 
+          O mejor aún, usa la OPCIÓN 2 (GitHub Pages)
+
+Problema: "No funciona el .bat"
+Solución: Usa la OPCIÓN 2 (más fácil y mejor)
+
+Problema: "Mi esposa no puede acceder"
+Solución: Verifica que el repositorio sea "Public" en GitHub
+
+
+═══════════════════════════════════════════════════════════════════
+  💡 RECOMENDACIÓN: Usa la OPCIÓN 2 (GitHub Pages)
+     Es más fácil, no requiere instalación y tu esposa puede
+     usarlo desde cualquier lugar con solo un enlace.
+═══════════════════════════════════════════════════════════════════
+
