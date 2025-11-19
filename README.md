@@ -170,5 +170,3 @@ Este proyecto es de uso privado para la Dra. Karelys Matheus.
 ---
 
 **Desarrollado con ❤️ para facilitar la gestión de presupuestos odontológicos**
-
-PROBANDO
