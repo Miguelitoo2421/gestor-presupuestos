@@ -33,7 +33,8 @@ export class PDFService {
             // Cargar logo
             let logoImage = null;
             try {
-                const logoResponse = await fetch('images/logo_1_sinF.png');
+                // Agregar timestamp para evitar caché del navegador
+                const logoResponse = await fetch(`images/logo_1_sinF.png?v=${Date.now()}`);
                 const logoArrayBuffer = await logoResponse.arrayBuffer();
                 logoImage = await pdfDoc.embedPng(logoArrayBuffer);
             } catch (error) {
@@ -51,7 +52,7 @@ export class PDFService {
             yPosition = this._drawHeader(page, fontBold, fontRegular, yPosition, rgb, width, logoImage);
             
             // ===== 2. DATOS DE LA CLÍNICA + NÚMERO DE FACTURA =====
-            yPosition -= 40; // Más separación del encabezado (1cm aprox)
+            yPosition -= 80; // Más separación del encabezado (1cm aprox)
             yPosition = this._drawClinicAndInvoiceInfo(page, fontBold, fontRegular, budget, yPosition, rgb, width, margins);
             
             // ===== 3. DATOS DEL PACIENTE =====
@@ -59,7 +60,7 @@ export class PDFService {
             yPosition = this._drawPatientInfo(page, fontBold, fontRegular, budget, yPosition, rgb, margins);
             
             // ===== 4. TABLA DE TRATAMIENTOS =====
-            yPosition -= 20;
+            yPosition -= 55;
             yPosition = this._drawTreatmentsTable(page, fontBold, fontRegular, budget, yPosition, rgb, width, margins);
             
             // ===== 5. TOTALES =====
@@ -87,21 +88,54 @@ export class PDFService {
         const clinic = CONFIG.PDF.CLINIC_INFO;
         const leftX = 40;
         const rightX = 555 - 180; // Posición derecha para datos de la doctora
+        const { height } = page.getSize();
         
         // Calcular la altura del encabezado negro
-        const headerTopY = yPosition;
-        const headerBottomY = yPosition - 50;
+        const headerBottomY = yPosition - 90;
         
         // FONDO NEGRO para toda la franja del encabezado (de extremo a extremo)
+        // Va desde headerBottomY hasta el TOPE ABSOLUTO de la página
         page.drawRectangle({
             x: 0,
             y: headerBottomY,
             width: width,
-            height: 50,
+            height: height - headerBottomY, // Desde aquí hasta el tope
             color: rgb(0, 0, 0),
         });
         
+        // ===== LÍNEAS BLANCAS DECORATIVAS =====
+        // Estas líneas son solo decorativas, no afectan la posición de los datos
+        
+        // LÍNEA HORIZONTAL SUPERIOR
+        const lineaDecorativaY = height - 15; // 15 puntos desde el tope
+        page.drawLine({
+            start: { x: 0, y: lineaDecorativaY },
+            end: { x: width, y: lineaDecorativaY },
+            thickness: 3, // Línea fina
+            color: rgb(1, 1, 1), // Blanco
+        });
+        
+        // LÍNEA VERTICAL IZQUIERDA
+        const lineaIzquierdaX = 15; // 📍 CAMBIAR ESTE VALOR para mover izquierda/derecha
+        page.drawLine({
+            start: { x: lineaIzquierdaX, y: height },      // Desde el tope
+            end: { x: lineaIzquierdaX, y: headerBottomY }, // Hasta el final de la franja negra
+            thickness: 3,
+            color: rgb(1, 1, 1), // Blanco
+        });
+        
+        // LÍNEA VERTICAL DERECHA
+        const lineaDerechaX = width - 15; // 📍 CAMBIAR ESTE VALOR para mover izquierda/derecha
+        page.drawLine({
+            start: { x: lineaDerechaX, y: height },      // Desde el tope
+            end: { x: lineaDerechaX, y: headerBottomY }, // Hasta el final de la franja negra
+            thickness: 3,
+            color: rgb(1, 1, 1), // Blanco
+        });
+
+        
         // Título principal (izquierda) - TEXTO BLANCO
+        yPosition -= 10;
         page.drawText('PLAN DE TRATAMIENTO', {
             x: leftX,
             y: yPosition,
@@ -110,20 +144,28 @@ export class PDFService {
             color: rgb(1, 1, 1), // Blanco
         });
         
-        // Datos de la doctora (derecha) - TEXTO BLANCO
-        page.drawText(clinic.doctorFullName, {
-            x: rightX,
+        // Datos de la doctora (derecha) - CENTRADOS (efecto pirámide invertida) - TEXTO BLANCO
+        const doctorName = clinic.doctorFullName;
+        const doctorNameWidth = fontBold.widthOfTextAtSize(doctorName, 11);
+        const doctorNameX = rightX + 60 - (doctorNameWidth / 2); // Centrado
+        
+        page.drawText(doctorName, {
+            x: doctorNameX,
             y: yPosition,
-            size: 11,
+            size: 12,
             font: fontBold,
             color: rgb(1, 1, 1), // Blanco
         });
         
         yPosition -= 15;
         
-        // Subtítulos de la doctora (derecha) - TEXTO BLANCO
-        page.drawText(clinic.headerSubtitle1, {
-            x: rightX,
+        // Subtítulo 1 - CENTRADO
+        const subtitle1 = clinic.headerSubtitle1;
+        const subtitle1Width = fontRegular.widthOfTextAtSize(subtitle1, 9);
+        const subtitle1X = rightX + 60 - (subtitle1Width / 2); // Centrado
+        
+        page.drawText(subtitle1, {
+            x: subtitle1X,
             y: yPosition,
             size: 9,
             font: fontRegular,
@@ -132,8 +174,13 @@ export class PDFService {
         
         yPosition -= 12;
         
-        page.drawText(clinic.headerSubtitle2, {
-            x: rightX,
+        // Subtítulo 2 - CENTRADO
+        const subtitle2 = clinic.headerSubtitle2;
+        const subtitle2Width = fontRegular.widthOfTextAtSize(subtitle2, 9);
+        const subtitle2X = rightX + 60 - (subtitle2Width / 2); // Centrado
+        
+        page.drawText(subtitle2, {
+            x: subtitle2X,
             y: yPosition,
             size: 9,
             font: fontRegular,
@@ -144,17 +191,17 @@ export class PDFService {
         
         // Logo debajo del título (si está disponible)
         if (logoImage) {
-            const logoWidth = 100; // Ancho del logo
+            const logoWidth = 200; // Ancho del logo
             const logoHeight = logoImage.height * (logoWidth / logoImage.width); // Mantener proporción
             
             page.drawImage(logoImage, {
                 x: leftX,
-                y: yPosition - logoHeight - 10,
+                y: yPosition - logoHeight + 100,
                 width: logoWidth,
                 height: logoHeight,
             });
             
-            yPosition -= (logoHeight + 20); // Ajustar posición después del logo
+            //yPosition -= (logoHeight + 2); // Ajustar posición después del logo
         }
         
         // NO HAY LÍNEA DIVISORIA
@@ -278,7 +325,7 @@ export class PDFService {
      */
     _drawPatientInfo(page, fontBold, fontRegular, budget, yPosition, rgb, margins) {
         const leftX = margins.left + 30; // Mover a la derecha
-        const labelWidth = 120;
+        const labelWidth = 60; // REDUCIDO: Menos espacio entre etiqueta y valor
         
         // Título
         page.drawText('DATOS DEL PACIENTE', {
@@ -617,12 +664,35 @@ export class PDFService {
         
         // Importe total con descuento - FRANJA NEGRA DE EXTREMO A EXTREMO
         // Fondo negro para toda la franja
+        const franjaNegraY = yPosition - 15;
+        const franjaNegraAltura = 30;
+        
         page.drawRectangle({
             x: 0,
-            y: yPosition - 15,
+            y: franjaNegraY,
             width: width,
-            height: 25,
+            height: franjaNegraAltura,
             color: rgb(0, 0, 0), // Negro
+        });
+        
+        // LÍNEAS VERTICALES BLANCAS EN LA FRANJA NEGRA DEL TOTAL
+        const lineaIzquierdaX = 15; // Misma posición que en el header
+        const lineaDerechaX = width - 15; // Misma posición que en el header
+        
+        // Línea vertical izquierda
+        page.drawLine({
+            start: { x: lineaIzquierdaX, y: franjaNegraY + franjaNegraAltura },
+            end: { x: lineaIzquierdaX, y: franjaNegraY },
+            thickness: 3,
+            color: rgb(1, 1, 1), // Blanco
+        });
+        
+        // Línea vertical derecha
+        page.drawLine({
+            start: { x: lineaDerechaX, y: franjaNegraY + franjaNegraAltura },
+            end: { x: lineaDerechaX, y: franjaNegraY },
+            thickness: 3,
+            color: rgb(1, 1, 1), // Blanco
         });
         
         page.drawText('Importe total con descuento:', {

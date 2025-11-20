@@ -1,0 +1,90 @@
+═══════════════════════════════════════════════════════════════════
+  🔧 AJUSTES REALIZADOS - PIRÁMIDE DOCTORA Y LÍNEAS VERTICALES
+═══════════════════════════════════════════════════════════════════
+
+ARCHIVO: js/services/PDFService.js
+
+═══════════════════════════════════════════════════════════════════
+  🔼 MOVER LA PIRÁMIDE DE LA DOCTORA (izquierda/derecha)
+═══════════════════════════════════════════════════════════════════
+
+Debes cambiar el valor "+ 90" en las siguientes 3 líneas:
+
+📍 LÍNEA 150 (Nombre de la doctora):
+   const doctorNameX = rightX + 90 - (doctorNameWidth / 2);
+                              ⬆️
+                         CAMBIAR ESTE NÚMERO
+
+📍 LÍNEA 165 (Subtítulo 1 - "Odontólogo - Ortodoncista"):
+   const subtitle1X = rightX + 90 - (subtitle1Width / 2);
+                             ⬆️
+                        CAMBIAR ESTE NÚMERO
+
+📍 LÍNEA 180 (Subtítulo 2 - "Nº de colegiado"):
+   const subtitle2X = rightX + 90 - (subtitle2Width / 2);
+                             ⬆️
+                        CAMBIAR ESTE NÚMERO
+
+---
+
+🎯 VALORES PARA MOVER:
+
+  + 90  → Posición actual
+  + 70  → Un poco a la izquierda
+  + 50  → Más a la izquierda ✅ RECOMENDADO
+  + 30  → Aún más a la izquierda
+  + 10  → Muy a la izquierda
+  + 0   → Máximo a la izquierda (pegado a rightX)
+
+⚠️ IMPORTANTE: Usa el MISMO valor en las 3 líneas para mantener
+   la alineación de la pirámide invertida.
+
+EJEMPLO:
+  const doctorNameX = rightX + 50 - (doctorNameWidth / 2);
+  const subtitle1X = rightX + 50 - (subtitle1Width / 2);
+  const subtitle2X = rightX + 50 - (subtitle2Width / 2);
+
+═══════════════════════════════════════════════════════════════════
+  ➕ LÍNEAS VERTICALES EN FRANJA NEGRA DEL TOTAL
+═══════════════════════════════════════════════════════════════════
+
+✅ YA APLICADO AUTOMÁTICAMENTE
+
+Ubicación: Líneas 678-695 en js/services/PDFService.js
+
+Se agregaron las líneas verticales blancas en la franja negra del
+"Importe total con descuento" para que coincidan con las del header.
+
+Las líneas usan las mismas coordenadas X:
+  • Línea izquierda: 15 puntos desde el borde
+  • Línea derecha: width - 15 puntos
+
+Si necesitas moverlas horizontalmente, cambia:
+
+📍 LÍNEA 681:
+   const lineaIzquierdaX = 15;
+                           ⬆️
+                    Mover izquierda/derecha
+
+📍 LÍNEA 682:
+   const lineaDerechaX = width - 15;
+                                 ⬆️
+                          Mover izquierda/derecha
+
+⚠️ IMPORTANTE: Si cambias estos valores, también debes cambiar
+   los del header (líneas 119 y 128) para que coincidan.
+
+═══════════════════════════════════════════════════════════════════
+  📋 RESUMEN DE CAMBIOS
+═══════════════════════════════════════════════════════════════════
+
+✅ PROBLEMA 1: Mover pirámide de la doctora
+   → Cambiar "+ 90" en líneas 150, 165, 180
+   → Usa un valor menor (ej: + 50) para mover a la izquierda
+
+✅ PROBLEMA 2: Líneas verticales en franja negra del total
+   → Ya aplicado automáticamente
+   → Las líneas ahora se ven en ambas franjas negras
+
+═══════════════════════════════════════════════════════════════════
+

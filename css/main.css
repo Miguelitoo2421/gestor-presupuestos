@@ -637,6 +637,10 @@ body {
     gap: var(--spacing-xs);
 }
 
+.history-item-actions .btn-small {
+    min-width: 90px;
+}
+
 .history-item-info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);

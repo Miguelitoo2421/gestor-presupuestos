@@ -177,6 +177,49 @@ export class BudgetService {
         return this.currentBudget.toJSON();
     }
 
+    /**
+     * Carga un presupuesto desde JSON
+     * @param {Object} budgetData - Datos del presupuesto en formato JSON
+     */
+    loadBudgetFromJSON(budgetData) {
+        // Reiniciar el presupuesto actual
+        this.currentBudget.reset();
+        
+        // Cargar datos del paciente
+        this.currentBudget.budgetCode = budgetData.budgetCode;
+        this.currentBudget.setPatientName(budgetData.patientName || '');
+        this.currentBudget.setPatientDNI(budgetData.patientDNI || '');
+        this.currentBudget.setPatientAddress(budgetData.patientAddress || '');
+        this.currentBudget.setPatientRegion(budgetData.patientRegion || '');
+        this.currentBudget.setPatientPostalCode(budgetData.patientPostalCode || '');
+        this.currentBudget.setPatientEmail(budgetData.patientEmail || '');
+        this.currentBudget.setPatientPhone(budgetData.patientPhone || '');
+        this.currentBudget.setDate(new Date(budgetData.date));
+        
+        // Cargar items (tratamientos)
+        if (budgetData.items && Array.isArray(budgetData.items)) {
+            budgetData.items.forEach(itemData => {
+                // Reconstruir el tratamiento
+                const treatment = {
+                    id: itemData.treatment.id,
+                    nombre: itemData.treatment.nombre,
+                    categoria: itemData.treatment.categoria,
+                    precio: itemData.treatment.precio
+                };
+                
+                // Agregar el item
+                this.currentBudget.addItem(treatment, itemData.quantity, itemData.discount);
+            });
+        }
+        
+        // Configurar IVA y moneda
+        this.currentBudget.setIvaRate(CONFIG.TAX.IVA_RATE);
+        this.currentBudget.currencySymbol = CONFIG.TAX.CURRENCY_SYMBOL;
+        
+        // Notificar a los observadores
+        this.notifyObservers();
+    }
+
     // Patrón Observer
 
     /**

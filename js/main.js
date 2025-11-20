@@ -37,7 +37,7 @@ class App {
             this.components.table = new TableComponent();
             this.components.preview = new PreviewComponent();
             this.components.actions = new ActionsComponent();
-            this.components.history = new HistoryComponent();
+            this.components.history = new HistoryComponent(this.components.form); // Pasar formComponent para poder actualizar el formulario
 
             // Cargar datos
             await this.components.form.loadTreatments();

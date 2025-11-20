@@ -1,0 +1,111 @@
+═══════════════════════════════════════════════════════════════════
+  📐 CÓMO MOVER LAS LÍNEAS DECORATIVAS BLANCAS EN EL PDF
+═══════════════════════════════════════════════════════════════════
+
+UBICACIÓN DEL CÓDIGO: js/services/PDFService.js - Líneas 106-135
+
+═══════════════════════════════════════════════════════════════════
+  ↔️ LÍNEA HORIZONTAL (arriba del todo)
+═══════════════════════════════════════════════════════════════════
+
+📍 LÍNEA 109:
+const lineaDecorativaY = height - 15;
+
+CÓMO MOVERLA VERTICALMENTE:
+  • height - 10  → MÁS ARRIBA (más cerca del tope)
+  • height - 15  → Posición actual
+  • height - 30  → MÁS ABAJO
+  • height - 50  → AÚN MÁS ABAJO
+
+EJEMPLO:
+  const lineaDecorativaY = height - 25; // Bajar la línea
+
+═══════════════════════════════════════════════════════════════════
+  ↕️ LÍNEA VERTICAL IZQUIERDA
+═══════════════════════════════════════════════════════════════════
+
+📍 LÍNEA 118:
+const lineaIzquierdaX = 15;
+
+CÓMO MOVERLA HORIZONTALMENTE:
+  • 5   → MUY CERCA del borde izquierdo
+  • 15  → Posición actual (cerca del borde)
+  • 30  → MÁS HACIA EL CENTRO
+  • 50  → AÚN MÁS AL CENTRO
+
+EJEMPLO:
+  const lineaIzquierdaX = 10; // Más cerca del borde
+  const lineaIzquierdaX = 40; // Más hacia el centro
+
+═══════════════════════════════════════════════════════════════════
+  ↕️ LÍNEA VERTICAL DERECHA
+═══════════════════════════════════════════════════════════════════
+
+📍 LÍNEA 127:
+const lineaDerechaX = width - 15;
+
+CÓMO MOVERLA HORIZONTALMENTE:
+  • width - 5   → MUY CERCA del borde derecho
+  • width - 15  → Posición actual (cerca del borde)
+  • width - 30  → MÁS HACIA EL CENTRO
+  • width - 50  → AÚN MÁS AL CENTRO
+
+EJEMPLO:
+  const lineaDerechaX = width - 10; // Más cerca del borde
+  const lineaDerechaX = width - 40; // Más hacia el centro
+
+═══════════════════════════════════════════════════════════════════
+  🎨 GROSOR DE LAS LÍNEAS
+═══════════════════════════════════════════════════════════════════
+
+LÍNEA HORIZONTAL → Línea 113: thickness: 3
+LÍNEA IZQUIERDA  → Línea 122: thickness: 3
+LÍNEA DERECHA    → Línea 131: thickness: 3
+
+CAMBIAR A:
+  • thickness: 1  → Línea muy fina
+  • thickness: 2  → Línea fina
+  • thickness: 3  → Posición actual
+  • thickness: 5  → Línea gruesa
+  • thickness: 10 → Línea muy gruesa
+
+═══════════════════════════════════════════════════════════════════
+  📏 ALTURA DE LAS LÍNEAS VERTICALES
+═══════════════════════════════════════════════════════════════════
+
+Las líneas verticales van desde el TOPE de la página hasta el FINAL
+de la franja negra (headerBottomY).
+
+Si quieres que sean MÁS CORTAS:
+
+CAMBIAR:
+  end: { x: lineaIzquierdaX, y: headerBottomY }
+
+POR:
+  end: { x: lineaIzquierdaX, y: headerBottomY + 50 }
+  // +50 = termina 50 puntos ANTES del final de la franja negra
+
+═══════════════════════════════════════════════════════════════════
+  ➕ AGREGAR MÁS LÍNEAS DECORATIVAS
+═══════════════════════════════════════════════════════════════════
+
+COPIAR ESTE CÓDIGO después de la línea 135:
+
+// LÍNEA HORIZONTAL ADICIONAL
+page.drawLine({
+    start: { x: 0, y: 700 },
+    end: { x: width, y: 700 },
+    thickness: 3,
+    color: rgb(1, 1, 1), // Blanco
+});
+
+// LÍNEA VERTICAL ADICIONAL
+page.drawLine({
+    start: { x: 100, y: height },
+    end: { x: 100, y: headerBottomY },
+    thickness: 3,
+    color: rgb(1, 1, 1), // Blanco
+});
+
+═══════════════════════════════════════════════════════════════════
+

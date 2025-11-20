@@ -48,6 +48,35 @@ export class FormComponent {
     }
 
     /**
+     * Actualiza todos los campos del formulario con los datos del presupuesto actual
+     * @public
+     */
+    updateFormFromBudget() {
+        const budget = this.budgetService.getCurrentBudget();
+        
+        // Actualizar código de presupuesto
+        this.elements.budgetCode.textContent = budget.budgetCode;
+        
+        // Actualizar campos del paciente
+        this.elements.patientName.value = budget.patientName || '';
+        this.elements.patientDNI.value = budget.patientDNI || '';
+        this.elements.patientAddress.value = budget.patientAddress || '';
+        this.elements.patientRegion.value = budget.patientRegion || '';
+        this.elements.patientPostalCode.value = budget.patientPostalCode || '';
+        this.elements.patientEmail.value = budget.patientEmail || '';
+        this.elements.patientPhone.value = budget.patientPhone || '';
+        
+        // Actualizar fecha
+        const dateString = budget.date.toISOString().split('T')[0];
+        this.elements.budgetDate.value = dateString;
+        
+        // Resetear campos de tratamiento
+        this.elements.treatmentSelect.value = '';
+        this.elements.treatmentQuantity.value = '1';
+        this.elements.treatmentDiscount.value = '0';
+    }
+
+    /**
      * Vincula eventos del formulario
      * @private
      */

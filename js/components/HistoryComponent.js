@@ -4,11 +4,14 @@
  */
 
 import { getHistoryService } from '../services/HistoryService.js';
+import { getBudgetService } from '../services/BudgetService.js';
 import { formatDate, formatCurrency } from '../utils/formatter.js';
 
 export class HistoryComponent {
-    constructor() {
+    constructor(formComponent) {
         this.historyService = getHistoryService();
+        this.budgetService = getBudgetService();
+        this.formComponent = formComponent;
         
         this.elements = {
             historyBtn: document.getElementById('history-btn'),
@@ -123,6 +126,9 @@ export class HistoryComponent {
                     <div class="history-item-code">${budget.budgetCode}</div>
                 </div>
                 <div class="history-item-actions">
+                    <button class="btn btn-primary btn-small load-btn" data-code="${budget.budgetCode}">
+                        📋 Cargar
+                    </button>
                     <button class="btn btn-danger btn-small delete-btn" data-code="${budget.budgetCode}">
                         🗑️ Eliminar
                     </button>
@@ -144,6 +150,12 @@ export class HistoryComponent {
             </div>
         `;
 
+        // Evento cargar
+        const loadBtn = div.querySelector('.load-btn');
+        loadBtn.addEventListener('click', () => {
+            this._handleLoad(budget);
+        });
+
         // Evento eliminar
         const deleteBtn = div.querySelector('.delete-btn');
         deleteBtn.addEventListener('click', () => {
@@ -151,6 +163,28 @@ export class HistoryComponent {
         });
 
         return div;
+    }
+
+    /**
+     * Maneja la carga de un presupuesto
+     * @private
+     */
+    _handleLoad(budget) {
+        if (confirm('¿Desea cargar este presupuesto? Los datos actuales se reemplazarán.')) {
+            // Cargar el presupuesto en el servicio
+            this.budgetService.loadBudgetFromJSON(budget);
+            
+            // Actualizar el formulario con los datos cargados
+            if (this.formComponent) {
+                this.formComponent.updateFormFromBudget();
+            }
+            
+            // Cerrar el modal
+            this._closeModal();
+            
+            // Notificar al usuario
+            alert('Presupuesto cargado correctamente. Puedes modificarlo y generar un nuevo PDF.');
+        }
     }
 
     /**
