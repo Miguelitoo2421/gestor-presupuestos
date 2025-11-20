@@ -14,6 +14,12 @@ desktop.ini
 *.tmp
 *.log
 
+# Archivos de documentación personal
+*.txt
+ARQUITECTURA.md
+NOTAS_DESARROLLO.md
+fonts/INSTRUCCIONES_FUENTES.md
+
 # No ignorar archivos necesarios
 !libs/
 !data/
