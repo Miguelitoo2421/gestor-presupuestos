@@ -19,6 +19,12 @@
             "precio": 3222.80
         },
         {
+            "id": "invisalign-moderate-2",
+            "nombre": "Invisalign Moderate 2",
+            "categoria": "Invisalign",
+            "precio": 1845.00
+        },
+        {
             "id": "invisalign-comprehensive-3",
             "nombre": "Invisalign Comprehensive 3",
             "categoria": "Invisalign",
