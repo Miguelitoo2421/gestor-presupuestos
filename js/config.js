@@ -35,7 +35,7 @@ export const CONFIG = {
             clinicName: 'BUKODENT',
             clinicBrand: 'Tu Clínica Dental en Madrid',
             clinicAddress: 'Calle López de Hoyos, 474. CP 28043',
-            clinicEmail: 'dental@dra-matheus-spinola.com',
+            clinicEmail: 'dra.matheus.spinola@gmail.com',
             clinicPhone: '631914884',
             
             // Información de exención de IVA
